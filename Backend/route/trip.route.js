@@ -38,4 +38,22 @@ router.get('/autocode', async (req, res) => {
   }
 });
 
+router.get('/preview', async (req, res) => {
+  const { tripcode } = req.query;
+  try {
+    const trip = await Trip.findOne({ tripcode });
+    if (!trip) {
+      return res.status(404).json({ message: "Trip not found" });
+    }
+    res.json({
+      tripname: trip.tripname,
+      tripcode: trip.tripcode,
+      memberCount: trip.usernames.length,
+    });
+  } catch (error) {
+    console.error("Error fetching trip preview:", error);
+    res.status(500).json({ message: "Error fetching trip" });
+  }
+});
+
 export default router;

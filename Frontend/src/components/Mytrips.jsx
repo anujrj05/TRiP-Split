@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getApiBaseUrl } from "../utils/apiBaseUrl";
+import { getInviteLink } from "../utils/expenseCategories";
 
 const Mytrips = ({ loggedInUser }) => {
   const [trips, setTrips] = useState([]);
@@ -54,6 +55,9 @@ const Mytrips = ({ loggedInUser }) => {
   const handleCopy = () => {
     toast.success("Code Copied");
   };
+  const handleCopyLink = () => {
+    toast.success("Invite link copied!");
+  };
   async function deletetrip(trip) {
     // Do something with the trip data
     const tripInfo = {
@@ -87,16 +91,24 @@ const Mytrips = ({ loggedInUser }) => {
                 <h3 className="text-xl font-semibold mb-2">{trip.tripname}</h3>
                 <p className="text-gray-500 mb-4">Trip Code: {trip.tripcode}</p>
               </button>
-              <div className="flex justify-between px-[2rem]">
+              <div className="flex flex-col gap-2 px-4">
                 <button
-                  className=" w-[5rem] bg-[#1a43bf] text-white px-2 py-1 rounded-md hover:bg-pink-700 duration-300"
+                  className="w-full bg-[#1a43bf] text-white px-2 py-1 rounded-md hover:bg-pink-700 duration-300"
                   onClick={() => deletetrip(trip)}
                 >
                   Delete
                 </button>
                 <CopyToClipboard text={trip.tripcode} onCopy={handleCopy}>
-                  <button className=" w-[5rem] bg-[#1a43bf] text-white px-2 py-1 rounded-md hover:bg-pink-700 duration-300">
-                    Copy
+                  <button className="w-full bg-[#1a43bf] text-white px-2 py-1 rounded-md hover:bg-pink-700 duration-300">
+                    Copy Code
+                  </button>
+                </CopyToClipboard>
+                <CopyToClipboard
+                  text={getInviteLink(trip.tripcode)}
+                  onCopy={handleCopyLink}
+                >
+                  <button className="w-full bg-green-600 text-white px-2 py-1 rounded-md hover:bg-green-700 duration-300">
+                    Copy Invite Link
                   </button>
                 </CopyToClipboard>
               </div>

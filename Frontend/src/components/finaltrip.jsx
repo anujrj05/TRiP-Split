@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { getApiBaseUrl } from "../utils/apiBaseUrl";
+import { EXPENSE_CATEGORIES } from "../utils/expenseCategories";
 
 import { v4 as uuidv4 } from "uuid";
 import Transdialog from "./transdialog";
@@ -84,6 +85,7 @@ function Finaltrips() {
       entry_by: username,
       amount: data.amount,
       comment: data.comment,
+      category: data.category || "Other",
       tripcode: trip.tripcode,
       whopaid: whopaid,
       split: split,
@@ -266,6 +268,18 @@ function Finaltrips() {
                     This field is required
                   </span>
                 )}
+                <select
+                  name="category"
+                  className="border border-[#1a43bf] px-4 py-2 mt-4 rounded-md w-[16rem]"
+                  defaultValue="Other"
+                  {...register("category")}
+                >
+                  {EXPENSE_CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>
+                      {cat}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div>
                 <div className="ml-[25px]">

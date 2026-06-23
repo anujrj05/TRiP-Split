@@ -14,6 +14,11 @@ const transactionSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  category: {
+    type: String,
+    enum: ["Food", "Travel", "Hotel", "Shopping", "Other"],
+    default: "Other",
+  },
   entry_by: {
     type: String,
     required: true,

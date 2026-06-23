@@ -10,6 +10,7 @@ import Whopayss from "./whopays/whopays";
 import Profile from "./profile/profile";
 import Signup from "./components/Signup";
 import ForgotPassword from "./components/ForgotPassword";
+import JoinByLinkPage from "./Jointrip/joinByLink";
 import { Toaster } from "react-hot-toast";
 import { useAuth } from "./context/AuthProvider";
 
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="/jointrip"
             element={authUser ? <Jointrip /> : <Navigate to="/signup" />}
+          />
+          <Route
+            path="/join/:tripcode"
+            element={authUser ? <JoinByLinkPage /> : <Navigate to="/signup" />}
           />
           <Route
             path="/finaltrip/:tripcode"

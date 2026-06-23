@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { getApiBaseUrl } from "../utils/apiBaseUrl";
+import { getInviteLink } from "../utils/expenseCategories";
 
 function Createtrip() {
   const location = useLocation();
@@ -68,6 +69,14 @@ function Createtrip() {
       });
   }
 
+  const handleCopyLink = () => {
+    if (!tripCode) {
+      toast.error("Generate a trip code first");
+      return;
+    }
+    toast.success("Invite link copied!");
+  };
+
   return (
     <>
       <div className="max-w-screen-2xl container mx-auto md:px-20 px-4">
@@ -122,10 +131,23 @@ function Createtrip() {
                     type="button"
                     className="bg-[#1a43bf] text-white px-4 py-1 rounded-md hover:bg-pink-700 duration-300"
                   >
-                    Copy
+                    Copy Code
                   </button>
                 </CopyToClipboard>
               </div>
+              {tripCode && (
+                <CopyToClipboard
+                  text={getInviteLink(tripCode)}
+                  onCopy={handleCopyLink}
+                >
+                  <button
+                    type="button"
+                    className="w-[240px] mb-3 bg-green-600 text-white px-4 py-1 rounded-md hover:bg-green-700 duration-300"
+                  >
+                    Copy Invite Link
+                  </button>
+                </CopyToClipboard>
+              )}
 
               <button
                 type="submit"
