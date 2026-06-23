@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 
 function Createtrip() {
   const location = useLocation();
@@ -23,14 +24,14 @@ function Createtrip() {
     const { username } = authUser;
 
     console.log(username);
-    console.log(import.meta.env.REACT_APP_BASE_URL);
+    console.log(getApiBaseUrl());
     const tripInfo = {
       tripname: data.tripname,
       tripcode: data.tripcode,
       username: username,
     };
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/trip/createtrip`, tripInfo)
+      .post(`${getApiBaseUrl()}/trip/createtrip`, tripInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
@@ -51,7 +52,7 @@ function Createtrip() {
 
   function autogenerate() {
     axios
-      .get(`${import.meta.env.REACT_APP_BASE_URL}/trip/autocode`)
+      .get(`${getApiBaseUrl()}/trip/autocode`)
       .then((res) => {
         if (res.data) {
           setTripCode(res.data.code);

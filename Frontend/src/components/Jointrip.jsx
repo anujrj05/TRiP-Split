@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 /* import Cards from "./Cards"; */
 import axios from "axios";
 import toast from "react-hot-toast";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 function Jointrip() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function Jointrip() {
       username: username,
     };
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/trip/jointrip`, tripInfo)
+      .post(`${getApiBaseUrl()}/trip/jointrip`, tripInfo)
       .then((res) => {
         if (res.data) {
           toast.success("Trip Joined Successfully");

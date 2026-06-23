@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 
 import {
   XAxis,
@@ -45,7 +46,7 @@ function TransactionLog() {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get(`${import.meta.env.REACT_APP_BASE_URL}/transaction/finalise`, {
+        .get(`${getApiBaseUrl()}/transaction/finalise`, {
           params: { tripcode: tripcode },
         })
         .then((response) => {

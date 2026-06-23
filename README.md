@@ -31,7 +31,26 @@ In MongoDB Atlas: cluster must be **Running**, Network Access must allow `0.0.0.
 
 ---
 
-## Deploy on Vercel (one GitHub repo, two projects)
+## Deploy on Vercel (one link — recommended)
+
+Use **one Vercel project** with repo **Root Directory = `.`** (project root).
+
+1. Import GitHub repo `Split_trip`
+2. Root Directory: leave as **`.`** (do not pick Frontend or Backend only)
+3. Environment Variables:
+   - `MongoDBURI` = your Atlas connection string
+4. Deploy
+5. Attach domain `split-trip-amber.vercel.app` to this project
+
+Everything runs on one URL:
+- Website: `https://your-domain.vercel.app`
+- API: same domain (`/user`, `/trip`, `/transaction`, `/health`)
+
+No `REACT_APP_BASE_URL` needed in production.
+
+---
+
+## Deploy on Vercel (two projects — legacy)
 
 1. **Backend project**
    - Import `Split_trip` repo

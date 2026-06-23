@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { getApiErrorMessage } from "../utils/apiErrorMessage";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 function Login() {
   const {
     register,
@@ -17,7 +18,7 @@ function Login() {
       password: data.password,
     };
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/user/login`, userInfo)
+      .post(`${getApiBaseUrl()}/user/login`, userInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {

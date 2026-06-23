@@ -3,13 +3,14 @@ import axios from "axios"; // Assuming you use Axios for HTTP requests
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 
 const Mytrips = ({ loggedInUser }) => {
   const [trips, setTrips] = useState([]);
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get(`${import.meta.env.REACT_APP_BASE_URL}/trip/mytrips`, {
+        .get(`${getApiBaseUrl()}/trip/mytrips`, {
           params: { username: loggedInUser.username },
         })
         .then((response) => {
@@ -33,7 +34,7 @@ const Mytrips = ({ loggedInUser }) => {
     };
     console.log(`Trip name: ${trip.tripname}, Trip code: ${trip.tripcode}`);
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/trip/finaltrip`, tripInfo)
+      .post(`${getApiBaseUrl()}/trip/finaltrip`, tripInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
@@ -60,7 +61,7 @@ const Mytrips = ({ loggedInUser }) => {
       username: loggedInUser.username,
     };
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/trip/deletetrip`, tripInfo)
+      .post(`${getApiBaseUrl()}/trip/deletetrip`, tripInfo)
       .then((res) => {
         console.log(res.data);
       })

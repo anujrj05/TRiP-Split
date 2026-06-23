@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 /* import Cards from "./Cards"; */
 import axios from "axios";
 import toast from "react-hot-toast";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 
 import { v4 as uuidv4 } from "uuid";
 import Transdialog from "./transdialog";
@@ -36,7 +37,7 @@ function Finaltrips() {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get(`${import.meta.env.REACT_APP_BASE_URL}/trip/finaltrip`, {
+        .get(`${getApiBaseUrl()}/trip/finaltrip`, {
           params: { tripcode: trip.tripcode },
         })
         .then((response) => {
@@ -101,7 +102,7 @@ function Finaltrips() {
     console.log("Form reset called");
     await axios
       .post(
-        `${import.meta.env.REACT_APP_BASE_URL}/transaction/transaction`,
+        `${getApiBaseUrl()}/transaction/transaction`,
         tripInfo
       )
       .then((res) => {
@@ -120,7 +121,7 @@ function Finaltrips() {
 
   const whopays = async (data) => {
     axios
-      .get(`${import.meta.env.REACT_APP_BASE_URL}/transaction/whopays`, {
+      .get(`${getApiBaseUrl()}/transaction/whopays`, {
         params: { tripcode: trip.tripcode },
       })
       .then((res) => {
@@ -148,7 +149,7 @@ function Finaltrips() {
   };
   const finalise = async () => {
     axios
-      .get(`${import.meta.env.REACT_APP_BASE_URL}/transaction/finalise`, {
+      .get(`${getApiBaseUrl()}/transaction/finalise`, {
         params: { tripcode: trip.tripcode },
       })
       .then((res) => {

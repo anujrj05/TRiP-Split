@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { getApiErrorMessage } from "../utils/apiErrorMessage";
 import { PASSWORD_HINT, validatePassword } from "../utils/passwordValidation";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 
 function Signup() {
   const [id, setId] = useState("");
@@ -70,7 +71,7 @@ function Signup() {
       otp: formData.otp,
     };
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/user/verify`, userInfo)
+      .post(`${getApiBaseUrl()}/user/verify`, userInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {
@@ -109,7 +110,7 @@ function Signup() {
     };
     console.log("call karne se phle");
     await axios
-      .post(`${import.meta.env.REACT_APP_BASE_URL}/user/signup`, userInfo)
+      .post(`${getApiBaseUrl()}/user/signup`, userInfo)
       .then((res) => {
         console.log(res.data);
         if (res.data) {

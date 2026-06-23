@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 import user from "../../public/user.webp";
 
 function Profiles({ loggedInUser }) {
@@ -8,7 +9,7 @@ function Profiles({ loggedInUser }) {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get(`${import.meta.env.REACT_APP_BASE_URL}/user/profile`, {
+        .get(`${getApiBaseUrl()}/user/profile`, {
           params: { username: loggedInUser.username },
         })
         .then((response) => {

@@ -4,6 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { getApiErrorMessage } from "../utils/apiErrorMessage";
 import { PASSWORD_HINT, validatePassword } from "../utils/passwordValidation";
+import { getApiBaseUrl } from "../utils/apiBaseUrl";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ function ForgotPassword() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.REACT_APP_BASE_URL}/user/forgot-password/request`,
+        `${getApiBaseUrl()}/user/forgot-password/request`,
         { email: formData.email }
       );
       toast.success(res.data.message || "OTP sent successfully");
@@ -58,7 +59,7 @@ function ForgotPassword() {
 
     try {
       const res = await axios.post(
-        `${import.meta.env.REACT_APP_BASE_URL}/user/forgot-password/reset`,
+        `${getApiBaseUrl()}/user/forgot-password/reset`,
         {
           email: formData.email,
           otp: formData.otp,
