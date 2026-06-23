@@ -1,7 +1,7 @@
 
 # TRiP Split
 
-**Live App:** https://split-trip-three.vercel.app/
+**Live App:** https://t-ri-p-split.vercel.app/
 
 Split group trip expenses fairly. Track who paid, who owes whom, and settle up — all from one link.
 
