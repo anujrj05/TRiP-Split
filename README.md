@@ -19,21 +19,40 @@ Our website simplifies group trip finances, ensuring everyone stays on budget an
 
 ## Add Environment Variables
 
-To run this project, you will need to add the following environment variables to your .env file
+### Frontend (Vercel project — Root Directory: `Frontend`)
 
-### Frontend .env file
+`REACT_APP_BASE_URL=https://<your-backend>.vercel.app`
 
-`FRONTEND_URL= "http://localhost:4000/"`
+### Backend (Vercel project — Root Directory: `Backend`)
 
-### Backend .env file
+`MongoDBURI=mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/TRiP?retryWrites=true&w=majority&appName=Cluster0`
 
-`PORT= 4000`
+In MongoDB Atlas: cluster must be **Running**, Network Access must allow `0.0.0.0/0`.
 
-`MongoDBURI= "mongodb://0.0.0.0:27017/TRiP"`
+---
 
+## Deploy on Vercel (one GitHub repo, two projects)
 
+1. **Backend project**
+   - Import `Split_trip` repo
+   - Root Directory: `Backend`
+   - Add env: `MongoDBURI`
+   - Deploy → note URL (e.g. `https://split-trip-wheat.vercel.app`)
 
-## How to Run
+2. **Frontend project**
+   - Import same repo again
+   - Root Directory: `Frontend`
+   - Add env: `REACT_APP_BASE_URL` = backend URL from step 1
+   - Deploy
+   - Attach domain `split-trip-amber.vercel.app` to **frontend** project only
+
+3. **Test**
+   - Backend: `<backend-url>/health` → `databaseConnected: true`
+   - Website: `https://split-trip-amber.vercel.app`
+
+---
+
+## How to Run (local)
 
 **Clone the project**
 
